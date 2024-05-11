@@ -1,5 +1,5 @@
-import { Tweet } from "src/entities/Tweet";
-import { User } from "src/entities/User";
+import { Tweet } from "../entities/Tweet";
+import { User } from "../entities/User";
 import { DataSource } from "typeorm";
 
 export const AppDataSource = new DataSource({

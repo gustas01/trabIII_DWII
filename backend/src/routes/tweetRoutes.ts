@@ -1,12 +1,13 @@
 import { Router } from "express";
 import tweetController from "../controllers/tweetController";
+import loginRequired from "../middlewares/loginRequired";
 
 const router = Router();
 
-router.post("/", tweetController.create);
-router.get("/", tweetController.findAll);
-router.get("/friends", tweetController.findAll);
-router.put("/", tweetController.update);
-router.delete("/", tweetController.delete);
+router.post("/", loginRequired.validate, tweetController.create);
+router.get("/", loginRequired.validate, tweetController.findAll);
+router.get("/friends", loginRequired.validate, tweetController.findAll);
+router.put("/", loginRequired.validate, tweetController.update);
+router.delete("/", loginRequired.validate, tweetController.delete);
 
 export default router;
