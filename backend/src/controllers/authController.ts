@@ -9,20 +9,22 @@ import { LoginDTO } from "src/dtos/loginDTO";
 
 class AuthController {
   async register(req: Request, res: Response) {
-    const user: CreateUserDTO | null = req.body as CreateUserDTO;
+    try {
+      const user: CreateUserDTO | null = req.body as CreateUserDTO;
 
-    user.password = await bcryptjs.hash(
-      user.password,
-      await bcryptjs.genSalt(8)
-    );
+      user.password = await bcryptjs.hash(
+        user.password,
+        await bcryptjs.genSalt(8)
+      );
 
-    await userRepository.save(user);
+      await userRepository.save(user);
 
-    res.status(201).json({
-      status: 201,
-      content: "Usuário criado com sucesso!",
-      success: true,
-    } as ResponseDTO);
+      return res.status(201).json({
+        status: 201,
+        content: "Usuário criado com sucesso!",
+        success: true,
+      } as ResponseDTO);
+    } catch (e: any) {}
   }
 
   async login(req: Request, res: Response) {
