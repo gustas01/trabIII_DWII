@@ -7,6 +7,7 @@ import cookies from "cookie-parser";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import tweetRoutes from "./routes/tweetRoutes";
+import { AppDataSource } from "./config/datasource";
 
 dotenv.config();
 
@@ -23,6 +24,10 @@ app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/tweet", tweetRoutes);
 
-app.listen(process.env.SERVER_PORT, () =>
-  console.log(`Server executando na porta ${process.env.SERVER_PORT}`)
-);
+AppDataSource.initialize()
+  .then(async () => {
+    app.listen(process.env.SERVER_PORT, () =>
+      console.log(`Server executando na porta ${process.env.SERVER_PORT}`)
+    );
+  })
+  .catch((error) => console.log(error));

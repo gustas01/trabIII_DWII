@@ -11,7 +11,7 @@ class LoginRequired {
     if (!token)
       return res.status(401).json({
         status: 401,
-        content: "Login Required",
+        content: "Você deve logar para acessar esse serviço",
         success: false,
       } as ResponseDTO);
 
