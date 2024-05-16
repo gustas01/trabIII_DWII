@@ -1,15 +1,51 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
+import ResponseDTO from 'src/dtos/ResponseDTO';
 
 class TweetController {
   create(req: Request, res: Response) {
-    return res.json({ msg: "No create de Tweet" });
+    try {
+    } catch (e: any) {
+      return res.status(400).json({
+        status: 400,
+        content: 'Falha no banco: ' + e.errors,
+        success: true,
+      } as ResponseDTO);
+    }
   }
-  findAll() {
-    console.log("no findAll de tweet");
+
+  findAll(req: Request, res: Response) {
+    try {
+    } catch (e: any) {
+      return res.status(400).json({
+        status: 400,
+        content: 'Falha no banco: ' + e.errors,
+        success: true,
+      } as ResponseDTO);
+    }
   }
+
   // findAllFromFriends() {}
-  update() {}
-  delete() {}
+  update(req: Request, res: Response) {
+    try {
+    } catch (e: any) {
+      return res.status(400).json({
+        status: 400,
+        content: 'Falha no banco: ' + e.errors,
+        success: true,
+      } as ResponseDTO);
+    }
+  }
+
+  delete(req: Request, res: Response) {
+    try {
+    } catch (e: any) {
+      return res.status(400).json({
+        status: 400,
+        content: 'Falha no banco: ' + e.errors,
+        success: true,
+      } as ResponseDTO);
+    }
+  }
 }
 
 export default new TweetController();

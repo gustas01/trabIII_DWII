@@ -1,26 +1,19 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  IsStrongPassword,
-  MaxLength,
-} from "class-validator";
-import { CreateUserDTO } from "./createUserDTO";
+import { IsEmail, IsString, IsStrongPassword, MaxLength } from 'class-validator';
 
 export class UpdateUserDTO {
   @IsString()
   @MaxLength(30, {
-    message: "O primeiro nome deve ter no máximo $constraint1 caracteres",
+    message: 'O primeiro nome deve ter no máximo $constraint1 caracteres',
   })
   firstName: string;
 
   @IsString()
   @MaxLength(30, {
-    message: "O sobrenome nome deve ter no máximo $constraint1 caracteres",
+    message: 'O sobrenome nome deve ter no máximo $constraint1 caracteres',
   })
   lastName: string;
 
-  @IsEmail({}, { message: "O email deve ser válido" })
+  @IsEmail({}, { message: 'O email deve ser válido' })
   email: string;
 
   @IsStrongPassword(
@@ -33,8 +26,8 @@ export class UpdateUserDTO {
     },
     {
       message:
-        "A senha deve conter pelo menos 8 caracteres, sendo eles no mínimo 1 maiúsculo, 1 maiúsculo, 1 símbolo e 1 número",
-    }
+        'A senha deve conter pelo menos 8 caracteres, sendo eles no mínimo 1 maiúsculo, 1 maiúsculo, 1 símbolo e 1 número',
+    },
   )
   password: string;
 }
