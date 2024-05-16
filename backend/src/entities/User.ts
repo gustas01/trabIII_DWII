@@ -1,16 +1,9 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Tweet } from "./Tweet";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Tweet } from './Tweet';
 
-@Entity("users")
+@Entity('users')
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false, length: 30 })
@@ -27,7 +20,4 @@ export class User {
 
   @OneToMany(() => Tweet, (tweet) => tweet.author)
   tweets: Tweet[];
-
-  @ManyToMany(() => User)
-  friends: User;
 }

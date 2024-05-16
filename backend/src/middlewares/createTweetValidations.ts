@@ -1,20 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import ResponseDTO from 'src/dtos/ResponseDTO';
+import { Tweet } from 'src/entities/Tweet';
 
 export default async (req: Request, res: Response, next: NextFunction) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { content } = req.body as Tweet;
 
-  if (!firstName || !lastName || !email || !password)
+  if (!content)
     return res.status(400).json({
       status: 400,
       content: 'Todos os campos são obrigatórios!',
       success: false,
     } as ResponseDTO);
-
-  if (!(/[A-Z]/.test(password) && /[a-z]/.test(password) && /.{8,}/.test(password)))
-    return res.status(400).json({
-      errors: ['A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula e 1 minúscula'],
-    });
 
   return next();
 };
