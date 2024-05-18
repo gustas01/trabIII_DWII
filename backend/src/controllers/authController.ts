@@ -42,7 +42,7 @@ class AuthController {
       const id: string = String(user?.id);
 
       if (!user && !(await bcryptjs.compare(login.password, password)))
-        res.status(401).json({
+        return res.status(401).json({
           status: 401,
           content: 'Usuário ou senha inválidos',
           success: false,
@@ -52,35 +52,35 @@ class AuthController {
         expiresIn: '2h',
       });
 
-      res.cookie('token', token, {
-        httpOnly: true,
-        path: '/',
-        secure: true,
-        sameSite: 'none',
-      });
+      // res.cookie('token', token, {
+      //   httpOnly: true,
+      //   path: '/',
+      //   secure: true,
+      //   sameSite: 'none',
+      // });
 
       return res.status(200).json({
         status: 200,
-        content: 'Usuário logado com sucesso',
+        content: { token },
         success: true,
       } as ResponseDTO);
     } catch (e: any) {
       return res.status(400).json({
         status: 400,
-        content: 'Falha no banco: ' + e.errors,
-        success: true,
+        content: 'Falha no banco: ',
+        success: false,
       } as ResponseDTO);
     }
   }
 
   async logout(req: Request, res: Response) {
-    res.cookie('token', '', {
-      httpOnly: true,
-      path: '/',
-      secure: true,
-      sameSite: 'none',
-      maxAge: 0,
-    });
+    // res.cookie('token', '', {
+    //   httpOnly: true,
+    //   path: '/',
+    //   secure: true,
+    //   sameSite: 'none',
+    //   maxAge: 0,
+    // });
 
     req.body.user = undefined;
 

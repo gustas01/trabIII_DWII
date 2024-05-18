@@ -13,8 +13,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
   if (!(/[A-Z]/.test(password) && /[a-z]/.test(password) && /.{8,}/.test(password)))
     return res.status(400).json({
-      errors: ['A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula e 1 minúscula'],
-    });
+      status: 400,
+      content: 'A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula e 1 minúscula',
+      success: false,
+    } as ResponseDTO);
 
   return next();
 };

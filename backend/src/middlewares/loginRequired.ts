@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-import ResponseDTO from "src/dtos/ResponseDTO";
-import { User } from "src/entities/User";
-import { userRepository } from "../repositories/userRepository";
+import ResponseDTO from 'src/dtos/ResponseDTO';
+import { User } from 'src/entities/User';
+import { userRepository } from '../repositories/userRepository';
 
 class LoginRequired {
   async validate(req: Request, res: Response, next: NextFunction) {
@@ -11,7 +11,7 @@ class LoginRequired {
     if (!token)
       return res.status(401).json({
         status: 401,
-        content: "Você deve logar para acessar esse serviço",
+        content: 'Você deve logar para acessar esse serviço',
         success: false,
       } as ResponseDTO);
 
@@ -20,10 +20,20 @@ class LoginRequired {
         id: string;
       };
 
-      const user: User | null = await userRepository.findOneBy({ id });
+      const user: User | null = await userRepository.findOne({
+        where: { id },
+        relations: { tweets: true },
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          email: true,
+          tweets: { content: true, createdAt: true },
+        },
+      });
 
       if (!user) {
-        throw new Error("Usuário inválido");
+        throw new Error('Usuário inválido');
       }
 
       req.body.user = user;
@@ -31,15 +41,21 @@ class LoginRequired {
     } catch (e) {
       return res.status(401).json({
         status: 401,
-        content: "Token expirado ou inválido",
+        content: 'Token expirado ou inválido',
         success: false,
       } as ResponseDTO);
     }
   }
 
   static extractJWTFromCookies(req: Request) {
-    if (req.cookies && "token" in req.cookies && req.cookies.token.length > 0)
-      return req.cookies.token;
+    // if (req.cookies && "token" in req.cookies && req.cookies.token.length > 0)
+    //   return req.cookies.token;
+    // return null;
+
+    if (req.headers.authorization) {
+      const [, token] = req.headers.authorization?.split(' ');
+      return token;
+    }
     return null;
   }
 }
