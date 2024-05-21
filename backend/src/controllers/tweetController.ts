@@ -129,14 +129,50 @@ class TweetController {
       const user: User = req.body.user;
 
       const tweets: Tweet[] | null = await tweetRepository.find({
-        where: { author: user },
         relations: { author: true },
-        select: { author: { id: true, firstName: true, lastName: true, email: true } },
+        where: { author: user },
+        // select: { author: { id: true, firstName: true, lastName: true, email: true } },
       });
 
       return res.status(200).json({
         status: 200,
         content: tweets,
+        success: true,
+      } as ResponseDTO);
+    } catch (e: any) {
+      return res.status(400).json({
+        status: 400,
+        content: 'Falha no banco',
+        success: false,
+      } as ResponseDTO);
+    }
+  }
+
+  async likeOrDislike(req: Request, res: Response) {
+    try {
+      const user: User = req.body.user;
+      const tweetId = req.params.id;
+      const tweet: Tweet | null = await tweetRepository.findOne({
+        where: { id: tweetId },
+        relations: { author: true, likes: true },
+      });
+
+      if (tweet === null)
+        return res.status(403).json({
+          status: 403,
+          content: 'Tweet inexistente',
+          success: false,
+        } as ResponseDTO);
+
+      if (tweet.likes.some((t) => t.id === user.id))
+        tweet.likes.splice(tweet.likes.indexOf(user), 1);
+      else tweet.likes.unshift(user);
+
+      await tweetRepository.save(tweet);
+
+      return res.status(200).json({
+        status: 200,
+        content: 'Like ou deslike',
         success: true,
       } as ResponseDTO);
     } catch (e: any) {

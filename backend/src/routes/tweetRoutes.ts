@@ -9,6 +9,7 @@ router.post('/', createTweetValidations, loginRequired.validate, tweetController
 router.get('/', loginRequired.validate, tweetController.findAllFromAuthor);
 router.get('/all', loginRequired.validate, tweetController.findAll);
 router.put('/:id', createTweetValidations, loginRequired.validate, tweetController.update);
+router.patch('/:id', loginRequired.validate, tweetController.likeOrDislike);
 router.delete('/:id', loginRequired.validate, tweetController.delete);
 
 export default router;
