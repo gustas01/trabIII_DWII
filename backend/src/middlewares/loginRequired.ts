@@ -22,13 +22,11 @@ class LoginRequired {
 
       const user: User | null = await userRepository.findOne({
         where: { id },
-        relations: { tweets: true },
         select: {
           id: true,
           firstName: true,
           lastName: true,
           email: true,
-          tweets: true,
         },
       });
 

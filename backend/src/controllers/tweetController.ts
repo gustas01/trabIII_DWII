@@ -129,9 +129,12 @@ class TweetController {
       const user: User = req.body.user;
 
       const tweets: Tweet[] | null = await tweetRepository.find({
-        relations: { author: true },
         where: { author: user },
-        // select: { author: { id: true, firstName: true, lastName: true, email: true } },
+        relations: { author: true, likes: true },
+        select: {
+          author: { id: true, firstName: true, lastName: true, email: true },
+          likes: { id: true },
+        },
       });
 
       return res.status(200).json({
