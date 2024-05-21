@@ -1,10 +1,10 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  // if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
-  //   window.location.href = "/index.html";
-  // }
-  // if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
-  //   window.location.href = "/login.html";
-  // }
+  if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
+    window.location.href = "/index.html";
+  }
+  if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
 
   if (window.location.pathname === "/index.html") {
     // header
@@ -40,6 +40,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("allTweetsTab").addEventListener("click", async () => {
       document.getElementById("allTweetsTab").classList.add("active");
       document.getElementById("myTweetsTab").classList.remove("active");
+    });
+
+    document.getElementById("logout-button").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("data");
+      window.location.href = "/login.html";
     });
 
     document.getElementById("post-form").addEventListener("submit", async (e) => {
