@@ -41,7 +41,7 @@ class AuthController {
       const password: string = String(user?.password);
       const id: string = String(user?.id);
 
-      if (!user && !(await bcryptjs.compare(login.password, password)))
+      if (!user || !(await bcryptjs.compare(login.password, password)))
         return res.status(401).json({
           status: 401,
           content: 'Usuário ou senha inválidos',

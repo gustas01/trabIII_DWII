@@ -76,8 +76,6 @@ class TweetController {
         success: true,
       } as ResponseDTO);
     } catch (e: any) {
-      console.log(e);
-
       return res.status(400).json({
         status: 400,
         content: 'Falha no banco: ' + e.driverError,
@@ -133,7 +131,7 @@ class TweetController {
       const tweets: Tweet[] | null = await tweetRepository.find({
         where: { author: user },
         relations: { author: true },
-        select: { author: { firstName: true, lastName: true, email: true } },
+        select: { author: { id: true, firstName: true, lastName: true, email: true } },
       });
 
       return res.status(200).json({

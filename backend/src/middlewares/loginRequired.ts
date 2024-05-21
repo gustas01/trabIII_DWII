@@ -28,7 +28,7 @@ class LoginRequired {
           firstName: true,
           lastName: true,
           email: true,
-          tweets: { content: true, createdAt: true },
+          tweets: true,
         },
       });
 
