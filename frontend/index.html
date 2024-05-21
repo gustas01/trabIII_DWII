@@ -9,13 +9,18 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <title>Xuitter</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Xwitter</title>
   </head>
   <body>
     <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand">Xuitter</a>
-
+        <a class="navbar-brand">Xwitter</a>
+        <!-- <img src="./assets/images/peakpx.jpg" alt="" /> -->
         <div class="dropdown-center">
           <button
             type="button"
@@ -40,7 +45,30 @@
       </div>
     </nav>
 
-    <main></main>
+    <main class="home-container">
+      <form action="" class="px-4 py-3">
+        <div class="form-floating mb-3">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea"
+          ></textarea>
+          <label for="floatingTextarea">O que está acontecendo?</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Postar</button>
+      </form>
+
+      <ul class="nav nav-tabs nav-fill tweets-list-container">
+        <li class="nav-item">
+          <a id="myTweetsTab" class="nav-link active" aria-current="page" href="#">Meus tweets</a>
+        </li>
+        <li class="nav-item">
+          <a id="allTweetsTab" class="nav-link" aria-current="page" href="#">Todos</a>
+        </li>
+      </ul>
+
+      <div id="postContainer"></div>
+    </main>
     <script src="./js/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
