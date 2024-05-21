@@ -41,7 +41,27 @@ window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("allTweetsTab").classList.add("active");
       document.getElementById("myTweetsTab").classList.remove("active");
     });
-    console.log(tweetsdata.content);
+
+    document.getElementById("post-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const tweetContent = document.getElementById("post-form-textarea").value;
+      if (!tweetContent) return;
+
+      const response = await fetch("http://localhost:3001/tweet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content: tweetContent }),
+      });
+
+      const postTweetData = await response.json();
+      if (postTweetData.success) window.location.reload();
+
+      alert(postTweetData.content);
+    });
+
     tweetsdata.content.forEach((tweet) => {
       var postDiv = document.createElement("div");
       postDiv.className = "card text-bg-dark mb-3";
