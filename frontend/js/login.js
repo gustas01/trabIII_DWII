@@ -1,10 +1,10 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  // if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
-  //   window.location.href = "/index.html";
-  // }
-  // if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
-  //   window.location.href = "/login.html";
-  // }
+  if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
+    window.location.href = "/index.html";
+  }
+  if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
 
   if (document.getElementById("form-login"))
     document.getElementById("form-login").addEventListener("submit", async (e) => {
