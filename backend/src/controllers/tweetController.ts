@@ -28,8 +28,11 @@ class TweetController {
       return res.status(200).json({
         status: 200,
         content: await tweetRepository.find({
-          relations: { author: true },
-          select: { author: { firstName: true, lastName: true, email: true } },
+          relations: { author: true, likes: true },
+          select: {
+            author: { id: true, firstName: true, lastName: true, email: true },
+            likes: { id: true },
+          },
         }),
         success: true,
       } as ResponseDTO);
