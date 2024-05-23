@@ -1,12 +1,12 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
+  if (window.location.pathname === "/index.html" && localStorage.getItem("token")) {
+    window.location.href = "/home.html";
+  }
+  if (window.location.pathname !== "/index.html" && !localStorage.getItem("token")) {
     window.location.href = "/index.html";
   }
-  if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
-    window.location.href = "/login.html";
-  }
 
-  if (window.location.pathname === "/index.html") {
+  if (window.location.pathname === "/home.html") {
     // header
     const token = localStorage.getItem("token") ? localStorage.getItem("token") : "";
     const userresponse = await fetch("http://localhost:3001/user/me", {
@@ -73,7 +73,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("logout-button").addEventListener("click", () => {
       localStorage.removeItem("token");
       localStorage.removeItem("data");
-      window.location.href = "/login.html";
+      window.location.href = "/index.html";
     });
 
     document.getElementById("post-form").addEventListener("submit", async (e) => {

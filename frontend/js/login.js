@@ -1,9 +1,9 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  if (window.location.pathname === "/login.html" && localStorage.getItem("token")) {
-    window.location.href = "/index.html";
+  if (window.location.pathname === "/index.html" && localStorage.getItem("token")) {
+    window.location.href = "/home.html";
   }
-  if (window.location.pathname !== "/login.html" && !localStorage.getItem("token")) {
-    window.location.href = "/login.html";
+  if (window.location.pathname !== "/index.html" && !localStorage.getItem("token")) {
+    window.location.href = "/index.html";
   }
 
   if (document.getElementById("form-login"))
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         });
         const userdata = await userresponse.json();
         localStorage.setItem("data", JSON.stringify(userdata.content));
-        window.location.href = "/index.html";
+        window.location.href = "/home.html";
       }
     });
 });
