@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      const loginresponse = await fetch("http://localhost:3001/auth/register", {
+      const loginresponse = await fetch("https://trabiii-dwii.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,11 +32,11 @@ window.addEventListener("DOMContentLoaded", async () => {
         body: JSON.stringify({ email, password, firstName, lastName }),
       });
       const data = await loginresponse.json();
-      console.log(data.success);
+
       if (!data.success) alert(data.content);
       else {
         alert(data.content);
-        window.location.href = "/home.html";
+        window.location.href = "/index.html";
       }
     });
 });

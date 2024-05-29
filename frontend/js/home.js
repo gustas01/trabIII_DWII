@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (window.location.pathname === "/home.html") {
     // header
     const token = localStorage.getItem("token") ? localStorage.getItem("token") : "";
-    const userresponse = await fetch("http://localhost:3001/user/me", {
+    const userresponse = await fetch("https://trabiii-dwii.onrender.com/user/me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    const tweetsresponse = await fetch("http://localhost:3001/tweet", {
+    const tweetsresponse = await fetch("https://trabiii-dwii.onrender.com/tweet", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
       }
-      const tweetsresponse = await fetch("http://localhost:3001/tweet", {
+      const tweetsresponse = await fetch("https://trabiii-dwii.onrender.com/tweet", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
       }
-      const tweetsresponse = await fetch("http://localhost:3001/tweet/all", {
+      const tweetsresponse = await fetch("https://trabiii-dwii.onrender.com/tweet/all", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       const tweetContent = document.getElementById("post-form-textarea").value;
       if (!tweetContent) return;
 
-      const response = await fetch("http://localhost:3001/tweet", {
+      const response = await fetch("https://trabiii-dwii.onrender.com/tweet", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -143,7 +143,7 @@ function refreshPosts(tweetsdata, userdata, token) {
       likeButton.classList.add("active");
 
     likeButton.addEventListener("click", async () => {
-      fetch(`http://localhost:3001/tweet/${tweet.id}`, {
+      fetch(`https://trabiii-dwii.onrender.com/tweet/${tweet.id}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -152,7 +152,7 @@ function refreshPosts(tweetsdata, userdata, token) {
     });
 
     deleteButton.addEventListener("click", () => {
-      fetch(`http://localhost:3001/tweet/${tweet.id}`, {
+      fetch(`https://trabiii-dwii.onrender.com/tweet/${tweet.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

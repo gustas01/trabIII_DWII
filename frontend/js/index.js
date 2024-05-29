@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      const loginresponse = await fetch("http://localhost:3001/auth/login", {
+      const loginresponse = await fetch("https://trabiii-dwii.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (!data.success) alert(data.content);
       else {
         localStorage.setItem("token", data.content.token);
-        const userresponse = await fetch("http://localhost:3001/user/me", {
+        const userresponse = await fetch("https://trabiii-dwii.onrender.com/user/me", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
