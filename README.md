@@ -1,4 +1,4 @@
-# Trabalho de desenvolvimento Web II 
+# Trabalho de desenvolvimento Web II - Trabalho III
 
  ## Como executar a aplicação
  ### OBS: O frontend já está configurado para mandar as requisições para o backend que está executando em nuvem, porém ele está rodando no plano grátis em que a aplicação fica em modo de hibernação depois de meia-hora sem receber requisições. `Então para rodar o projeto, basta executar o frontend, mandar uma requisição e esperar 50 segundos para a aplicação "acordar". Após esse tempo, basta fazer as requisições normalmente`. Então não é necessário executar o backend, mas caso queira subir localmente, abaixo as instruções. O código do backend local e do que está em nuvem é exatamente o mesmo. <br> <br>
@@ -23,3 +23,8 @@ TOKEN_SECRET=
  2º passo - Abra a pasta do frontend no VSCode. <br>
  3º passo - Cliquei em `Go Live` no canto inferior esquerdo do VSCode. <br>
  ![image](https://github.com/gustas01/trabIII_DWII/assets/50846424/1941749e-a0e2-43c8-a507-1887e6643ab4)
+
+
+ # Trabalho de desenvolvimento Web II - Trabalho IV
+  ## Como executar a aplicação
+  Basta abrir o arquivo `index.html` no navegador
