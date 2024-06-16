@@ -1,7 +1,7 @@
 # Trabalho de desenvolvimento Web II 
 
  ## Como executar a aplicação
- ### OBS: O frontend já está configurado para mandar as requisições para o backend que está executando em nuvem, porém ele está rodando no plano grátis em que a aplicação fica em modo de hibernação depois de meia-hora sem receber requisições. Então para rodar o projeto, basta executar o frontend, mandar uma requisição e esperar 50 segundos para a aplicação "acordar". Após esse tempo, basta fazer as requisições normalmente. Então não é necessário executar o backend, mas caso queira subir localmente, abaixo as instruções. O código do backend local e do que está em nuvem é exatamente o mesmo. <br> <br>
+ ### OBS: O frontend já está configurado para mandar as requisições para o backend que está executando em nuvem, porém ele está rodando no plano grátis em que a aplicação fica em modo de hibernação depois de meia-hora sem receber requisições. `Então para rodar o projeto, basta executar o frontend, mandar uma requisição e esperar 50 segundos para a aplicação "acordar". Após esse tempo, basta fazer as requisições normalmente`. Então não é necessário executar o backend, mas caso queira subir localmente, abaixo as instruções. O código do backend local e do que está em nuvem é exatamente o mesmo. <br> <br>
  
  ## Como executar o backend localmente
  1º passo - abra o terminal na pasta 'backend' e execute o comando `npm i` para instalar as dependências. <br>
